@@ -13,8 +13,8 @@ class Slugger
     cleanseSlugInput: true
 
   input: $()
-  string: null
-  slug: null
+  lastSlug: null
+  generatedSlug: null
   slugIsDirty: false
   caretLibExists: false
 
@@ -43,8 +43,8 @@ class Slugger
     @options.slugInput.bind "change", @onSlugInputChange
 
     # Grab initial values for string and slug from their inputs
-    @string = @$input.val()
-    @slug = @options.slugInput.val()
+    @lastSlug = @options.slugInput.val()
+    @generatedSlug = @convert(@$input.val())
 
     @update()
 
@@ -66,28 +66,28 @@ class Slugger
     @update() if @options.slugInput.val() == ''
 
   update: ->
-    if @options.safeMode?
+    if @options.safeMode
       @safeUpdate()
     else
       @dirtyUpdate()
     @render()
 
   safeUpdate: ->
-    lastSlug = @options.slugInput.val()
+    @lastSlug = @options.slugInput.val()
     string = @$input.val()
-    if lastSlug != @slug and lastSlug != ''
+    if @lastSlug != @generatedSlug and @lastSlug != ''
       @slugIsDirty = true
     else
       @slugIsDirty = false
-      @slug = @convert(string)
+      @generatedSlug = @convert(string)
 
   dirtyUpdate: ->
     @slugIsDirty = false
     string = @$input.val()
-    @slug = @convert(string)
+    @generatedSlug = @convert(string)
 
   render: ->
-    @options.slugInput.val @slug unless @slugIsDirty
+    @options.slugInput.val @generatedSlug unless @slugIsDirty
 
   convert: (str) ->
     str = str.replace(/^\s+|\s+$/g, '') # trim
