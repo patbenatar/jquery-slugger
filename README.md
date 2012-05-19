@@ -30,9 +30,8 @@ $("#your_input").slugger
 ## Options (defaults shown)
 
 ```coffeescript
-$("#your_input").slugger
-  safeMode: true # Never override slug field after user has strayed
-  cleanseSlugInput: true # Cleanse as the user types into the slug input
+safeMode: true # Don't override slug field after user has strayed
+cleanseSlugInput: true # Cleanse as the user types into the slug input
 ```
 ## Caveats
 
