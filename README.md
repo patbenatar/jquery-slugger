@@ -2,6 +2,10 @@
 
 jQuery Slugger is a powerful little tool for creating a slug as your user enters text into an input. It properly allows your user to override the slug manually and cleanses input as they do so.
 
+### Demo
+
+A demo is available [here](http://patbenatar.github.com/jquery-slugger/)
+
 ### Features
 
 * Converts typed text in main input into URL-safe slug and displays it in slugInput
