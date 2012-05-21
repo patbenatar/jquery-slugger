@@ -10,6 +10,15 @@ jQuery Slugger is a powerful little tool for creating a slug as your user enters
 * With cleanseSlugInput on (default), input into slugInput is automatically cleansed
 * If you include the jquery.caret.js library, caret position will be properly preserved as slugInput is cleansed
 
+#### Supported Browsers
+
+Confirmed to work in the following browsers (haven't tested any others yet):
+
+* Firefox for Mac (Latest)
+* Safari for Mac (Latest)
+* Chrome for Mac (Latest)
+* Internet Explorer 8
+
 ### Makes slugs
 ![Basic usage](http://i.imgur.com/NWfcm.png)
 
