@@ -36,15 +36,16 @@ Confirmed to work in the following browsers (haven't tested any others yet):
 
 ## Usage
 
-```coffeescript
-$("#your_input").slugger
+```javascript
+$("#your_input").slugger({
   slugInput: $("#your_slug_input")
+});
 ```
 ## Options (defaults shown)
 
-```coffeescript
-safeMode: true # Don't override slug field after user has strayed
-cleanseSlugInput: true # Cleanse as the user types into the slug input
+```javascript
+safeMode: true, // Don't override slug field after user has strayed
+cleanseSlugInput: true // Cleanse as the user types into the slug input
 ```
 ## Caveats
 
