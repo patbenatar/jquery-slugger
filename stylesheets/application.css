@@ -1,0 +1,19 @@
+#demo input[type=text] {
+  outline: none;
+  border: 2px solid rgba(0,0,0,0.4);
+  -webkit-border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  font-size: 2em;
+  width: 96%;
+  padding: 15px 2%;
+  margin-bottom: 10px;
+  font-family: "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#demo input[type=text]:focus {
+  background: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,1);
+}
+input::-webkit-input-placeholder {
+  color: rgba(255,255,255,0.4);
+}
