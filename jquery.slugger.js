@@ -91,35 +91,30 @@
       }
     };
     Slugger.prototype.convert = function(str) {
-      var from, i, to, _i, _len, _ref;
-      str = str.replace(/^\s+|\s+$/g, '');
-      str = str.toLowerCase();
-      from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-      to = "aaaaaeeeeeiiiiooooouuuunc------";
-      _ref = from.length;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        i = _ref[_i];
-        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-      }
-      str = str.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
-      return str;
+      var cStr;
+      cStr = str.replace(/^\s+|\s+$/g, '');
+      cStr = this.replace(cStr);
+      return cStr;
     };
     Slugger.prototype.cleanse = function(str) {
-      var cStr, from, i, to, _i, _len, _ref;
-      cStr = str.toLowerCase();
-      from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-      to = "aaaaaeeeeeiiiiooooouuuunc------";
-      _ref = from.length;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        i = _ref[_i];
-        cStr = cStr.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-      }
-      cStr = cStr.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      var cStr;
+      cStr = this.replace(str);
       return {
         cleansedString: cStr,
         changeOccurred: cStr !== str,
         difference: str.length - cStr.length
       };
+    };
+    Slugger.prototype.replace = function(str) {
+      var cStr, from, i, to, _ref;
+      cStr = str.toLowerCase();
+      from = "åãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+      to = "aaaaaaeeeeeiiiiooooouuuunc------";
+      for (i = 0, _ref = from.length - 1; 0 <= _ref ? i <= _ref : i >= _ref; 0 <= _ref ? i++ : i--) {
+        cStr = cStr.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+      cStr = cStr.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      return cStr;
     };
     return Slugger;
   })();

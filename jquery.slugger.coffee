@@ -29,10 +29,8 @@ class Slugger
     # Do we have the (optionally) dependent caret lib?
     @caretLibExists = !!$().caret
 
-    # This plugin gets called on the container
     @$input = $el
 
-    # Bind to keyup events on @$input
     @$input.bind "keyup", @onInputKeyup
     # Bind to keyup events on @options.slugInput so we can keep
     # it cleansed as user edits it
@@ -89,38 +87,38 @@ class Slugger
   render: ->
     @options.slugInput.val @generatedSlug unless @slugIsDirty
 
+  # Converts headline to slug
+  # Trims trailing whitespace
   convert: (str) ->
-    str = str.replace(/^\s+|\s+$/g, '') # trim
-    str = str.toLowerCase()
+    cStr = str.replace(/^\s+|\s+$/g, '') # trim trailing nonsense
+    cStr = @replace(cStr)
+    return cStr
 
-    # remove accents, swap ñ for n, etc
-    from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
-    to = "aaaaaeeeeeiiiiooooouuuunc------"
-    for i in from.length
-      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i))
-
-    str = str.replace(/[^a-z0-9 -]/g, ''). # remove invalid chars
-      replace(/\s+/g, '-'). # collapse whitespace and replace by -
-      replace(/-+/g, '-') # collapse dashes
-
-    return str
-
+  # Keep slug cleansed as user types into slugInput
+  # Doesn't trim trailing whitespace
   # Returns a hash with some useful information about the change
   # as well as the cleansedString
   cleanse: (str) ->
+    cStr = @replace(str)
+    return {
+      cleansedString: cStr
+      changeOccurred: cStr != str
+      difference: str.length - cStr.length
+    }
+
+  # Replaces non-URL friendly characters with safe ones
+  # and strips irrelevant ones
+  replace: (str) ->
     cStr = str.toLowerCase()
 
-    from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
-    to = "aaaaaeeeeeiiiiooooouuuunc------"
-    for i in from.length
+    # remove accents, swap ñ for n, etc
+    from = "åãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
+    to = "aaaaaaeeeeeiiiiooooouuuunc------"
+    for i in [0..from.length-1]
       cStr = cStr.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i))
 
     cStr = cStr.replace(/[^a-z0-9 -]/g, ''). # remove invalid chars
       replace(/\s+/g, '-'). # collapse whitespace and replace by -
       replace(/-+/g, '-') # collapse dashes
 
-    return {
-      cleansedString: cStr
-      changeOccurred: cStr != str
-      difference: str.length - cStr.length
-    }
+    return cStr
