@@ -31,7 +31,7 @@ Confirmed to work in the following browsers (haven't tested any others yet):
 
 ## Installation
 
-1. Download your flavor (JS or Coffee) and include it in your app
+1. Grab the latest code from the `lib/` directory
 1. If you'd like to have Slugger handle the caret position properly as it cleanses slug input in edit mode, include [jquery.caret.js](https://github.com/DrPheltRight/jquery-caret). A version is included in this repo but it may be out of date.
 
 ## Usage
