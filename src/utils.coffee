@@ -4,7 +4,7 @@
   # Trims trailing whitespace
   convert: (str) ->
     cStr = str.replace(/^\s+|\s+$/g, '') # trim trailing nonsense
-    cStr = Slugger.Utils.replace(cStr)
+    cStr = Slugger.utils.replace(cStr)
     return cStr
 
   # Replaces non-URL friendly characters with safe ones
@@ -20,7 +20,7 @@
 
     rStr = ''
     for i in [0..cStr.length-1]
-      rStr += Slugger.ACCENT_MAP[cStr.charAt(i)] || cStr.charAt(i)
+      rStr += Slugger.utils.ACCENT_MAP[cStr.charAt(i)] || cStr.charAt(i)
     cStr = rStr
 
     cStr = cStr.replace(/[^a-z0-9 -]/g, ''). # remove invalid chars

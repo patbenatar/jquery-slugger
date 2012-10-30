@@ -29,8 +29,8 @@ emptyLib = ->
 
 compileCoffee = (development, version = null) ->
   behavior = if development then "-w" else "-c"
-  outputPath = if development then "development/lib/js" else "lib/js"
-  outputFilename = "crevasse.js"
+  outputPath = if development then "development/lib" else "lib"
+  outputFilename = "jquery.slugger.js"
   options = [
     "-j",
     outputFilename,
@@ -39,7 +39,7 @@ compileCoffee = (development, version = null) ->
     outputPath
   ]
   # Add files to compile in proper order
-  options.push "src/coffee/#{file}" for file in COFFEE_FILES
+  options.push "src/#{file}" for file in COFFEE_FILES
   execute "coffee", options, ->
     markVersion("#{outputPath}/#{outputFilename}", version)
 

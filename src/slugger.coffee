@@ -1,4 +1,4 @@
-class Slugger
+class @Slugger
 
   settings:
     slugInput: null

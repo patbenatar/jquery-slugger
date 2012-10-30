@@ -47,6 +47,26 @@ $("#your_input").slugger({
 safeMode: true, // Don't override slug field after user has strayed
 cleanseSlugInput: true // Cleanse as the user types into the slug input
 ```
+
+## Utilities
+
+Slugger exposes some of its internal utilities for you to use in the
+`Slugger.utils` object.
+
+### Slugger.utils.convert(str)
+
+Takes an input string and converts it to a URI friendly string, including
+trimming leading and trailing whitespace.
+
+### Slugger.utils.replace(str)
+
+Takes a string and replaces all non-URI friendly characters with URI-friendly
+ones.
+
+### Slugger.utils.ACCENT_MAP
+
+A massive hash mapping accented characters to their URI-friendly representations.
+
 ## Caveats
 
 It currently only supports displaying the slug in an input field. You can disable this field if you don't want the user to change it.
